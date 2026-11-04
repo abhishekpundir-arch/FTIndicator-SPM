@@ -1,3 +1,4 @@
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
@@ -14,7 +15,11 @@ let package = Package(
     targets: [
         .target(
             name: "FTIndicator",
-            path: "Sources/FTIndicator"
+            path: "Sources/FTIndicator",
+            resources: [
+                .copy("FTProgressIndicator/FTProgressIndicator.bundle")
+            ],
+            publicHeadersPath: "include"
         )
     ]
 )

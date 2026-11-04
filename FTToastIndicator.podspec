@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "https://twitter.com/liufengting"
   s.platform     = :ios
   s.source       = { :git => "https://github.com/liufengting/FTIndicator.git", :tag => "#{s.version}" }
-  s.source_files  = "FTToastIndicator", "FTIndicator/FTToastIndicator/**/*.{h,m}"
+  s.source_files  = "FTToastIndicator", "Sources/FTIndicator/FTToastIndicator/**/*.{h,m}", "Sources/FTIndicator/include/FTToastIndicator.h"
   s.requires_arc = true
   
 end

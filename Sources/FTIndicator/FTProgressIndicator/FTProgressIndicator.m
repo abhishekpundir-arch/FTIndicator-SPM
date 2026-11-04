@@ -343,7 +343,7 @@
         _iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
         _iconImageView.backgroundColor = [UIColor clearColor];
-        _iconImageView.image = [UIImage imageNamed:@"ft_info"];
+        _iconImageView.image = [UIImage imageNamed:@"ft_info" inBundle:[self ft_imageBundle] compatibleWithTraitCollection:nil];
         [self.contentView addSubview:_iconImageView];
     }
     return _iconImageView;
@@ -404,11 +404,22 @@
             break;
     }
 }
+/// Locates FTProgressIndicator.bundle for both Swift Package Manager and CocoaPods/manual installs.
+- (NSBundle *)ft_imageBundle
+{
+#if SWIFT_PACKAGE
+    NSBundle *hostBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    NSBundle *hostBundle = [NSBundle bundleForClass:[FTProgressIndicator class]];
+#endif
+    NSString *bundlePath = [hostBundle pathForResource:@"FTProgressIndicator" ofType:@"bundle"];
+    return bundlePath ? [NSBundle bundleWithPath:bundlePath] : hostBundle;
+}
+
 - (UIImage *)getImageWithStyle:(UIBlurEffectStyle)style messageType:(FTProgressIndicatorMessageType )type
 {
     UIImage *image;
-    NSString *bundlePath = [[NSBundle bundleForClass:[FTProgressIndicator class]] pathForResource:@"FTProgressIndicator" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSBundle *bundle = [self ft_imageBundle];
     switch (type) {
         case FTProgressIndicatorMessageTypeInfo:
             if (style == UIBlurEffectStyleDark) {
