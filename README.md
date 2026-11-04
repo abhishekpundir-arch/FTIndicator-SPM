@@ -55,6 +55,24 @@ A light wight UI package contains local notification, progress HUD, toast, with 
 
 # Installation
 
+## Swift Package Manager
+
+In Xcode: **File → Add Package Dependencies...** and enter:
+
+```
+https://github.com/abhishekpundir-arch/FTIndicator-SPM.git
+```
+
+Or add it to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/abhishekpundir-arch/FTIndicator-SPM.git", from: "1.0.0")
+]
+```
+
+then add `"FTIndicator"` to your target's dependencies and `import FTIndicator` (Swift) or `@import FTIndicator;` (Objective-C).
+
 ## Manually
 
 * clone this repo.
